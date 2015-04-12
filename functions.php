@@ -55,7 +55,7 @@ if ( ! function_exists('alpha_setup') ) {
 				'quote',
 				'video',
 				'audio'
-			);
+			)
 		 );
 
 		// Add support for automatic feed links
@@ -67,10 +67,30 @@ if ( ! function_exists('alpha_setup') ) {
 		// Register nav menus
 		register_nav_menus(
 			array(
-				'main-menu' => __( 'Main Menu', 'skelez' );
-			);
+				'main-menu' => __( 'Main Menu', 'skelez' )
+			)
 		 );
 	}
 
 	add_action( 'after_theme_setup', 'alpha_setup' ); 
+}
+
+/**
+*
+* -----------------------------------------------------------------
+*	Displays meta information for specific post
+* -----------------------------------------------------------------
+*/
+
+if ( ! function_exists('alpha_post_meta') ) {
+	function alpha_post_meta() {
+		echo '<ul class="list-inline entry-meta">';
+
+		if ( get_post_type() === 'post' ) {
+			// shows marked sticky post
+			if ( is_sticky() ) {
+				echo '<li class="meta-featured-post"><i class="fa fa-thumb-tack"></i> ' . __( 'Sticky', 'alpha' ) . '</li>';
+			}
+		}
+	}
 }
