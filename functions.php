@@ -107,6 +107,28 @@ if ( ! function_exists('alpha_post_meta') ) {
 			if ( $category_list ) {
 				echo '<li class="meta-categories"> ' . $category_list . ' </li>';
 			}
+
+			// the tags
+			$tag_list = get_the_tag_list('', ',' );
+			if ( $tag_list ) {
+				echo '<li class="meta-tag"> ' . $tag_list . ' </li>';
+			}
+
+			// comments
+			if ( comments_open() ) : 
+				echo '<li>';
+				echo '<span class="meta-reply">';
+				comments_popup_link( __( 'Level a comment', 'alpha'), __('One comment so far', 'alpha' ), __( 'Veiw all % comments', 'alpha') );
+				echo '</span>';
+				echo '</li>';
+			endif;
+			
+			// edit link
+			if ( is_user_logged_in() ) {
+				echo '<li>';
+				edit_post_link( __('Edit', 'alpha'), '<span class="meta-edit">', '</span>');
+				echo '</li>';
+			}	
 		}
 	}
 }
