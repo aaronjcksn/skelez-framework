@@ -91,6 +91,22 @@ if ( ! function_exists('alpha_post_meta') ) {
 			if ( is_sticky() ) {
 				echo '<li class="meta-featured-post"><i class="fa fa-thumb-tack"></i> ' . __( 'Sticky', 'alpha' ) . '</li>';
 			}
+
+			// get post author
+			printf(
+					'<li class="meta-author"><a href="%1$s" rel="author">%2$s</a></li>',
+					esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ),
+					get_the_author()
+				);
+
+			// get the date
+			echo '<li class="meta-date"> ' . get_the_date() . ' </li>';
+
+			// the categories
+			$category_list = get_the_category_list(',' );
+			if ( $category_list ) {
+				echo '<li class="meta-categories"> ' . $category_list . ' </li>';
+			}
 		}
 	}
 }
