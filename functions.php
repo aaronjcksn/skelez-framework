@@ -132,3 +132,30 @@ if ( ! function_exists('alpha_post_meta') ) {
 		}
 	}
 }
+
+/**
+*
+* -----------------------------------------------------------------
+*	Display navigation to the next/previous set of post
+* -----------------------------------------------------------------
+*/
+
+if ( ! function_exists('alpha_paging_nav') ) {
+	function alpha_paging_nav() { ?>
+		<ul>
+			<?php if ( get_previous_posts_link(); ?>
+			<li class="next">
+				<?php get_previous_posts_link( __( 'Newer Posts &rarr;', 'alpha' ) ); ?>
+			</li>
+			<?php endif; ?>
+			<?php if ( get_next_posts_link(); ?>
+			<li class="next">
+				<?php get_next_posts_link( __( 'Newer Posts &rarr;', 'alpha' ) ); ?>
+			</li>
+			<?php endif; ?>
+
+		</ul> <?php
+
+	}
+}
+?>
