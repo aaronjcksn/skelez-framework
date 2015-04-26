@@ -84,7 +84,7 @@ if ( ! function_exists('alpha_setup') ) {
 
 if ( ! function_exists('alpha_post_meta') ) {
 	function alpha_post_meta() {
-		echo '<ul class="list-inline entry-meta">';
+		echo '<ul class="list-inline entry-meta"></ul>';
 
 		if ( get_post_type() === 'post' ) {
 			// shows marked sticky post
@@ -140,22 +140,24 @@ if ( ! function_exists('alpha_post_meta') ) {
 * -----------------------------------------------------------------
 */
 
-if ( ! function_exists('alpha_paging_nav') ) {
+if ( ! function_exists( 'alpha_paging_nav') ) {
 	function alpha_paging_nav() { ?>
 		<ul>
-			<?php if ( get_previous_posts_link(); ?>
-			<li class="next">
-				<?php get_previous_posts_link( __( 'Newer Posts &rarr;', 'alpha' ) ); ?>
-			</li>
-			<?php endif; ?>
-			<?php if ( get_next_posts_link(); ?>
-			<li class="next">
-				<?php get_next_posts_link( __( 'Newer Posts &rarr;', 'alpha' ) ); ?>
-			</li>
+			<?php 
+				if ( get_previous_posts_link() ) : ?>
+				<li class="next">
+					<?php get_previous_posts_link( __( 'Newer Posts &rarr;', 'alpha') ); ?>
+				</li>
 			<?php endif; ?>
 
+			 <?php 
+				if ( get_next_posts_link() ) : ?>
+				<li class="previous">
+					<?php get_next_posts_link( __( '&larr; Older Posts', 'alpha') ); ?>
+				</li>
+			<?php endif; ?>
 		</ul> <?php
-
 	}
 }
+
 ?>
